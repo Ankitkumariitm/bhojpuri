@@ -1,3 +1,10 @@
-likh('hii')
-likh('klo')
-    #iiii
+# Ab import likhe ke zaroorat nahi, direct use kari (Bhojpuri Power!)
+Samay.ruka(1)
+likh("Abhi ke samay: " + Samay.abhi())
+
+natija = Ganit.factorial(5)
+likh("5 ke factorial: " + akshar(natija))
+
+sutari = [10, 20, 30, 40]
+jagah = Ganit.khoja(sutari, 30)
+likh("30 kahan ba? : " + akshar(jagah))
