@@ -1,0 +1,17 @@
+import math
+import tkinter
+
+# Python ke asli function direct kaam kari
+natija = math.sqrt(25)
+likh("25 ke root hola: ", natija)
+
+# Chota sa Window banai
+root = tkinter.Tk()
+root.title("Bhojpuri Power")
+root.geometry("300x100")
+
+label = tkinter.Label(root, text="Ee bina mapping ke chalat ba!")
+label.pack()
+
+# IDE ke terminal mein output dikhi aur ek window khuli
+root.mainloop()
