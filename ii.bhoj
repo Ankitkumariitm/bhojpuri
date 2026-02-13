@@ -1,0 +1,38 @@
+# --- Bhojpuri Pro Program: Report Card Manager ---
+
+kam grade_nikal(marks):
+    agar marks >= 80:
+        wapas "A+ (Lallantop)"
+    nahitoh agar marks >= 60:
+        wapas "A (Sahi ba)"
+    nahitoh agar marks >= 40:
+        wapas "B (Pass ho gaila)"
+    nahitoh:
+        wapas "F (Agli baar mehnat kari)"
+
+kaam shuru_karo():
+    likh("=== BHOJPURI STUDENT REPORT SYSTEM ===")
+    
+    naam = pucho("Student ke naam batai: ")
+    maths = purnank(pucho("Maths ke marks: "))
+    science = purnank(pucho("Science ke marks: "))
+    english = purnank(pucho("English ke marks: "))
+
+    kul_marks = maths + science + english
+    average = kul_marks / 3
+
+    likh("\n--- RESULT AA GAIL ---")
+    likh("Naam: " + naam)
+    likh("Kul Marks: " + akshar(kul_marks))
+    likh("Average: " + akshar(average))
+
+    result_grade = grade_nikal(average)
+    likh("Grade: " + result_grade)
+
+    agar average < 40:
+        likh("Sujhav: Thoda kam ghumi, padhai par dhyan di!")
+    nahitoh:
+        likh("Sujhav: Bahut badhiya! Mithai bantiye.")
+
+# Program ke chalu kare ke tarika
+shuru_karo()

@@ -1,0 +1,13 @@
+import pandas as pd
+
+# Bilkul naya data (testing ke liye)
+nawa_sutari = {
+    "Zila": ["Motihari", "Patna", "Ara"],
+    "Garmi": [40, 42, 38]
+}
+
+# Variable ka naam bhi badal dijiye 'tikaune_nawa'
+tikaune_nawa = pd.DataFrame(nawa_sutari)
+
+likh("--- Naya Temperature Report ---")
+likh(tikaune_nawa)

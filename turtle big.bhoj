@@ -1,0 +1,51 @@
+import turtle
+import math
+
+# screen
+screen = turtle.Screen()
+screen.setup(width=800, height=700)
+screen.bgcolor("#ec5a96")   # pink background
+
+t = turtle.Turtle()
+t.speed(0)
+t.width(2)
+t.color("red")
+
+# -------- HEART FUNCTION --------
+kaam heart(size, x, y):
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+
+    t.begin_fill()
+    harbar i me tak(360):
+        angle = math.radians(i)
+        X = size * 16 * math.sin(angle)**3
+        Y = size * (13*math.cos(angle) - 5*math.cos(2*angle) - 2*math.cos(3*angle) - math.cos(4*angle))
+        t.goto(x + X, y + Y)
+    t.end_fill()
+
+
+# -------- MULTIPLE HEARTS --------
+positions = [
+    (0, 0, 10),
+    (-200, 150, 6),
+    (200, 150, 6),
+    (-250, -100, 5),
+    (250, -100, 5),
+    (0, 250, 5),
+    (-350, 50, 4),
+    (350, 50, 4)
+]
+
+harbar x, y, s me positions:
+    heart(s, x, y)
+
+# -------- TEXT --------
+t.penup()
+t.goto(0, -40)
+t.color("white")
+t.write("TANU ❤ You️", align="center", font=("Comic Sans MS", 40, "bold"))
+
+# keep window open
+turtle.done()

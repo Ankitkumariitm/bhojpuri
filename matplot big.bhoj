@@ -1,0 +1,55 @@
+import matplotlib.pyplot as plt
+import random
+
+# -----------------------------
+# Data Generate
+# -----------------------------
+days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+study_hours = [2, 3, 5, 4, 6, 7, 3]
+
+subjects = ["Math", "Physics", "Chemistry", "CS", "English"]
+marks = [78, 65, 82, 90, 70]
+
+# scatter data
+x = [random.randint(1, 50) harbar _ me tak(30)]
+y = [random.randint(1, 50) harbar _ me tak(30)]
+
+# pie data
+time_spent = [35, 25, 20, 20]
+activities = ["Study", "Sleep", "Mobile", "Other"]
+
+# -----------------------------
+# Create 2x2 grid
+# -----------------------------
+plt.figure(figsize=(12,8))
+
+# 1️⃣ Line Plot
+plt.subplot(2,2,1)
+plt.plot(days, study_hours, marker="o")
+plt.title("Study Hours Per Day")
+plt.xlabel("Days")
+plt.ylabel("Hours")
+
+# 2️⃣ Bar Chart
+plt.subplot(2,2,2)
+plt.bar(subjects, marks)
+plt.title("Subject Marks")
+plt.xticks(rotation=30)
+
+# 3️⃣ Scatter Plot
+plt.subplot(2,2,3)
+plt.scatter(x, y)
+plt.title("Random Scatter Data")
+plt.xlabel("X")
+plt.ylabel("Y")
+
+# 4️⃣ Pie Chart
+plt.subplot(2,2,4)
+plt.pie(time_spent, labels=activities, autopct="%1.1f%%")
+plt.title("Daily Time Usage")
+
+# Layout fix
+plt.tight_layout()
+
+# Show all graphs
+plt.show() 

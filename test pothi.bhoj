@@ -1,0 +1,16 @@
+import pandas as pd
+
+likh("Pandas version:", pd.__version__)
+
+# DataFrame banana
+data = {
+    "Name of student": ["Ankit kumar", "Rahul kumar", "Sita kumari", "Gita kumari",'Tanu mishra'],
+    "Age": [20, 22, 19, 21,20],
+    "grade": ["pas","fail", "frist", "second",'pas'],
+    "mask":['80','30','99','90','80']
+}
+
+df = pd.DataFrame(data)
+
+likh("DataFrame:\n",df)
+#likh(df)

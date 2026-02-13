@@ -1,0 +1,58 @@
+import pandas as pd
+
+likh("Pandas pothi:", pd.__version__)
+likh("---- Student Report Analyzer ----")
+
+# Step 1: Create data
+data = {
+    "Name": ["Ankit", "Rahul", "Sita", "Gita", "Mohan", "Ravi", "Priya", "Kiran",'tanu','Ankit'],
+    "Math": [85, 40, 92, 76, 55, 33, 67, 81,88,99],
+    "Science": [78, 65, 88, 90, 45, 50, 72, 60,90,99],
+    "English": [90, 55, 79, 85, 60, 35, 80, 70,90,99],
+    "City": ["Patna", "Delhi", "Patna", "Mumbai", "Delhi", "Patna", "Mumbai", "Delhi",'bettiah','bettiah'],
+    "roll no":[5555,6666,7777,8888,9999,1111,2222,3333,4444,1122],
+    "date of birth":['1/1/2005','1/1/2006','1/1/2007','1/1/2008','1/1/2009','1/1/2010','1/1/2011','1/1/2012','1/1/2013','1/1/2014']
+}
+
+df = pd.DataFrame(data)
+
+likh("Full Data:\n",df)
+#likh(df)
+
+# Step 2: Total & Percentage
+df["Total"] = df["Math"] + df["Science"] + df["English"]
+df["Percentage"] = df["Total"] / 3
+
+# Step 3: Result column
+df["Result"] = df["Percentage"].apply(lambda x: "Pas" agar x >= 40 nahitoh "Fail")
+
+likh("\nWith Total & Percentage:")
+likh(df)
+
+# Step 4: Topper
+topper = df.sort_values(by="Percentage", ascending=jhooth).head(1)
+likh("\nTopper:")
+likh(topper)
+
+# Step 5: Failed Students
+failed = df[df["Result"] == "Fail"]
+likh("\nFailed Students:")
+likh(failed)
+
+# Step 6: City wise average
+city_avg = df.groupby("City")["Percentage"].mean()
+likh("\nCity Wise Average Percentage:")
+likh(city_avg)
+
+# Step 7: Statistics
+likh("\nOverall Statistics:")
+likh("Average:", df["Percentage"].mean())
+likh("Highest:", df["Percentage"].max())
+likh("Lowest:", df["Percentage"].min())
+
+# Step 8: Save to CSV
+df.to_csv(r"C:\Users\Ankit\Desktop\students2.csv", index=jhooth)
+likh("Desktop me save ho gayi")
+
+#df.to_csv("students_report.csv", index=jhooth)
+likh("\nReport saved as students_report2.csv")
