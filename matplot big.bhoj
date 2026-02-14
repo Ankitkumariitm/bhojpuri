@@ -52,4 +52,4 @@ plt.title("Daily Time Usage")
 plt.tight_layout()
 
 # Show all graphs
-plt.show() 
+plt.show()
