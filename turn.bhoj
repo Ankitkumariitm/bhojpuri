@@ -1,0 +1,93 @@
+import os
+import tkinter as tk
+from PIL import Image, ImageDraw
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+
+MODEL_FILE = "digit_model.h5"
+
+# =========================
+# TRAIN MODEL (AUTO)
+# =========================
+kaam train_model():
+    likh("Training model... first time thoda time lagega ⏳")
+
+    (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+
+    x_train = x_train/255.0
+    x_test = x_test/255.0
+
+    model = keras.Sequential([
+        keras.layers.Flatten(input_shape=(28,28)),
+        keras.layers.Dense(128, activation='relu'),
+        keras.layers.Dense(64, activation='relu'),
+        keras.layers.Dense(10, activation='softmax')
+    ])
+
+    model.compile(optimizer='adam',
+                  loss='sparse_categorical_crossentropy',
+                  metrics=['accuracy'])
+
+    model.fit(x_train, y_train, epochs=5)
+
+    model.save(MODEL_FILE)
+    likh("Model saved ✅")
+
+# =========================
+# LOAD / CREATE MODEL
+# =========================
+agar not os.path.exists(MODEL_FILE):
+    train_model()
+
+model = tf.keras.models.load_model(MODEL_FILE)
+likh("Model Loaded 🚀")
+
+# =========================
+# GUI
+# =========================
+win = tk.Tk()
+win.title("AI Handwritten Number Recognizer")
+win.geometry("400x470")
+win.resizable(False, False)
+
+canvas = tk.Canvas(win, width=300, height=300, bg="black")
+canvas.pack(pady=10)
+
+image = Image.new("L", (300,300), "black")
+draw = ImageDraw.Draw(image)
+
+kaam paint(event):
+    x,y = event.x, event.y
+    r = 10
+    canvas.create_oval(x-r,y-r,x+r,y+r, fill="white", outline="white")
+    draw.ellipse([x-r,y-r,x+r,y+r], fill="white")
+
+canvas.bind("<B1-Motion>", paint)
+
+label = tk.Label(win, text="Draw a number", font=("Arial",18))
+label.pack()
+
+# =========================
+# PREDICT
+# =========================
+kaam predict():
+    img = image.resize((28,28))
+    img = np.array(img)/255.0
+    img = img.reshape(1,28,28)
+
+    pred = model.predict(img, verbose=0)
+    number = np.argmax(pred)
+    confidence = round(np.max(pred)*100,2)
+
+    label.config(text=f"Prediction: {number}  ({confidence}%)")
+
+kaam clear():
+    canvas.delete("all")
+    draw.rectangle([0,0,300,300], fill="black")
+    label.config(text="Draw a number")
+
+tk.Button(win, text="Predict", width=20, command=predict).pack(pady=5)
+tk.Button(win, text="Clear", width=20, command=clear).pack()
+
+win.mainloop()
